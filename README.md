@@ -1,93 +1,61 @@
-<<<<<<< HEAD
-# Student-Information-System-SIS-
-A student information system that records name, email, course, year level, average and pass/fail status
-=======
 # Student Information System
 
-A simple information management application built with **PHP, HTML and CSS**.
-It displays a collection of student records stored in PHP arrays, with summary
-statistics, a search feature and a per-student details page.
+A small web application for managing student records. It is built with plain PHP, HTML, and CSS, and it does not need a database.
 
-## Features
+With this app you can view all students in a table, see a quick summary of the class, open a student's full record, add a new student, and delete a student.
 
-- Displays a collection of 13 student records in a table
-- Add new students through a form (`add-student.php`), saved to `includes/students.json`
-- Delete a student with the button on the right of each row
-- Information is organized in a **multidimensional PHP array** (`includes/data.php`)
-- Uses **PHP functions** for displaying and processing information (`includes/functions.php`):
-  - `getStudents()`, `searchStudents()`, `findStudentById()` — data access
-  - `addStudent()`, `getStoredStudents()`, `saveStoredStudents()` — saving new records
-  - `deleteStudent()`, `getDeletedIds()`, `saveDeletedIds()` — removing records
-  - `computeAverage()`, `getLetterGrade()`, `isPassing()` — grade processing
-  - `renderStudentTable()`, `renderStudentRow()` — HTML display
-  - `getStats()` — summary statistics (total, overall average, passing count, programs)
-- Applies **PHP string functions** where appropriate:
-  - `trim()`, `strtolower()`, `ucwords()` — cleaning/formatting names and search input
-  - `strtoupper()`, `substr()` — building student initials
-  - `sprintf()` — formatting student numbers (`23000440200` → `S-23000440200`)
-  - `number_format()` — formatting averages and counts
-  - `str_contains()` — case-insensitive search
-  - `implode()`, `explode()`, `htmlspecialchars()` — array/text handling and safe output
-- Presented with **HTML and CSS** (simple, clean, responsive table layout with
-  pass/fail badges and stat cards)
+## What the app can do
 
-## Project Structure
+- Show a list of students with their student number, name, email,  year level, average grade, and whether they are passing or failing.
+- Display summary cards above the table with the total number of students, the overall average, and the number of passing students.
+- Open a details page for any student. The page shows the student's information, all subject grades, the average, and the letter grade.
+- Add a new student using a form. The form checks that the name, email, year level, and grades are filled in correctly before saving.
+- Delete a student using the Delete button on the right side of each row. A confirmation message appears first so records are not removed by accident.
 
-```
-student-information-system/
-├── index.php               # Front page: stats, search form, record table
-├── student-details.php     # One student's full record (?id=N)
-├── add-student.php         # Form for adding a new student
-├── delete-student.php      # Handles deleting a student (POST)
-├── includes/
-│   ├── data.php            # Student records (multidimensional array)
-│   ├── students.json       # Students added through the form
-│   ├── deleted.json        # IDs of deleted base records
-│   ├── functions.php       # Processing + display functions
-│   ├── header.php          # Shared page header
-│   └── footer.php          # Shared page footer
-├── css/
-│   └── style.css           # All styling
-└── README.md
-```
+## Requirements
 
-## How to Run
+You only need PHP to run this project. PHP 7.4 or newer is recommended.
 
-### Option A — XAMPP / WAMP
+## Running the app
 
-1. Copy the `student-information-system` folder into your web root
-   (e.g. `C:\xampp\htdocs\`).
-2. Start Apache.
+### Using XAMPP or WAMP
+
+1. Copy the project folder into your web server's root folder. For XAMPP this is usually `C:\xampp\htdocs\`.
+2. Start Apache from the XAMPP or WAMP control panel.
 3. Open `http://localhost/student-information-system/` in your browser.
 
-### Option B — PHP built-in server
+### Using PHP's built-in server
+
+Open a terminal in the project folder and run:
 
 ```bash
-cd student-information-system
 php -S localhost:8000
 ```
 
-Then open `http://localhost:8000` in your browser.
+Then visit `http://localhost:8000` in your browser.
 
-## How to Submit via GitHub
+## Project structure
 
-1. Create a new **public** repository on GitHub (e.g. `student-information-system`).
-   Do not initialize it with a README.
-2. In the project folder, run:
-
-```bash
-git init
-git add .
-git commit -m "Add Student Information System (PHP, HTML, CSS)"
-git branch -M main
-git remote add origin https://github.com/<your-username>/student-information-system.git
-git push -u origin main
+```
+student-information-system/
+├── index.php               The main page: summary cards and the student table
+├── student-details.php     The full record for one student
+├── add-student.php         The form for adding a new student
+├── delete-student.php      Handles deleting a student
+├── includes/
+│   ├── data.php            The original student records
+│   ├── students.json       Students added through the form
+│   ├── deleted.json        IDs of original records that were deleted
+│   ├── functions.php       Functions that process data and build the page
+│   ├── header.php          The shared top part of each page
+│   └── footer.php          The shared bottom part of each page
+├── css/
+│   └── style.css           All of the styling
+└── README.md
 ```
 
-3. Paste the repository URL as your submission.
+The starter records are kept in `includes/data.php`. Students added through the form are saved to `includes/students.json`, and deleted starter records are remembered in `includes/deleted.json`, so changes remain after you refresh or restart the app. The `includes` folder must be writable for adding and deleting students to work.
 
-## Passing Grade
+## Passing grade
 
-A student passes with an average grade of **75 and above**. This threshold is
-set in `isPassing()` inside `includes/functions.php` and can be changed there.
->>>>>>> cbffffc (SIS system v1)
+A student passes when their average grade is 75 or higher. This rule is set in the `isPassing()` function inside `includes/functions.php`, so you can change the passing grade there if needed.
